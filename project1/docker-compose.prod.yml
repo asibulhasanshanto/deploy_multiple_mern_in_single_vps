@@ -1,0 +1,46 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - project1:/data/db
+
+  project1_backend:
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    container_name: project1_backend
+    hostname: project1_backend
+    restart: always
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./backend/src/.env
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+
+  project1_client:
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    container_name: project1_client
+    hostname: project1_client
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./client/.env
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      - project1_backend
+volumes:
+  project1:
