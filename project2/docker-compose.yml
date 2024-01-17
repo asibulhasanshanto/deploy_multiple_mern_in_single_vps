@@ -1,38 +1,36 @@
 version: "3.8"
 
 services:
-  mongodb:
+  mongodb_project2:
     image: mongo
-    container_name: mongodb
+    container_name: mongodb_project2
     restart: always
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
-      - project1:/data/db
+      - project2:/data/db
 
-  project1_backend:
+  backend:
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./backend
-    container_name: project1_backend
-    hostname: project1_backend
+    container_name: backend
     restart: always
     ports:
-      - "4000:4000"
+      - "4001:4000"
     env_file:
       - ./backend/src/.env
     volumes:
       - ./backend:/backend
       - /backend/node_modules
 
-  project1_client:
+  client:
     build:
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       context: ./client
-    container_name: project1_client
-    hostname: project1_client
+    container_name: client
     ports:
-      - "3000:3000"
+      - "3001:5173"
     env_file:
       - ./client/.env
     volumes:
@@ -41,11 +39,6 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
     depends_on:
-      - project1_backend
+      - backend
 volumes:
-  project1:
-
-networks:
-  default:
-    name: nginx_reverse_proxy_container
-    external: true
+  project2:

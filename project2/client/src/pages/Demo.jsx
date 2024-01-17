@@ -16,7 +16,7 @@ const Demo = () => {
       <div className="flex h-[92vh] w-full flex-col items-center justify-center">
         <div className="">
           <h1 className="my-3 text-5xl font-bold text-secondary">
-            Demo Project 1
+            Demo Project 2
           </h1>
         </div>
         <div className="conainer">

@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  nginx-rp-gateway:
+    container_name: nginx-rp-gateway
+    hostname: nginx-rp-gateway
+    image: nginx:1.16.0
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./conf:/etc/nginx/conf.d/
+      - ./html/index.html:/var/www/html/index.html
+      - /etc/letsencrypt:/etc/letsencrypt
+networks:
+  default:
+    name: nginx_reverse_proxy_container
