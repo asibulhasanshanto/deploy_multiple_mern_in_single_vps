@@ -47,5 +47,5 @@ volumes:
 
 networks:
   default:
-    name: nginx_reverse_proxy_container
+    name: nginx_reverse_proxy_gateway
     external: true

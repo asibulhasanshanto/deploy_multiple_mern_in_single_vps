@@ -1,7 +1,7 @@
 module.exports = {
   APP_NAME: 'API boilerplate',
   BASE_URL: 'http://localhost:4000',
-  DATABASE_URL: 'mongodb://localhost:27018/boilerplate_dev',
+  DATABASE_URL: 'mongodb://mongodb_project2:27017/boilerplate_dev',
 
   JWT_COOKIE_EXPIRES_IN: '30',
   JWT_SECRET: 'secret',

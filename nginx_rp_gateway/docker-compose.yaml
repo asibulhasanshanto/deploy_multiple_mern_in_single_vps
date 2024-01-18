@@ -14,4 +14,4 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
 networks:
   default:
-    name: nginx_reverse_proxy_container
+    name: nginx_reverse_proxy_gateway
